@@ -40,8 +40,8 @@ if st.button('คำนวน') and cm > 10 and kg >10 :
     st.warning(tt)
     st.image('b5.png')
     word = "โรคอ้วนอันตราย"
-
-   payload = {
+  
+  payload = {
         "text": text_input,
         "speaker": speaker_id,
         "volume": 1,
@@ -82,5 +82,6 @@ if st.button('คำนวน') and cm > 10 and kg >10 :
 
     except Exception as e:
         st.error(f"เกิดข้อผิดพลาด: {e}")
+
 
 

@@ -58,30 +58,31 @@ if st.button('คำนวน') and cm > 10 and kg >10 :
         "botnoi-token": API_TOKEN
     }
 
-    try:
-        res = requests.post(API_URL, json=payload, headers=headers, timeout=30)
-        res.raise_for_status()
-        data = res.json()
-        st.write("API Response:", data)
+  try:
+    res = requests.post(API_URL, json=payload, headers=headers, timeout=30)
+    res.raise_for_status()
+    data = res.json()
+    st.write("API Response:", data)
 
-        # ดึง URL ไฟล์เสียง
-        audio_url = (
-            data.get("url")
-            or data.get("audio_url")
-            or (data.get("data") or {}).get("url")
+    # ดึง URL ไฟล์เสียง
+    audio_url = (
+        data.get("url")
+        or data.get("audio_url")
+        or (data.get("data") or {}).get("url")
         )
 
-        if audio_url:
-            audio_bytes = requests.get(audio_url, timeout=30).content
-            out_path = Path("botnoi_voice.mp3")
-            out_path.write_bytes(audio_bytes)
-            st.success(f"✅ บันทึกเสียงเรียบร้อย → {out_path.resolve()}")
-            st.audio(audio_bytes, format="audio/mp3")
-        else:
+    if audio_url:
+        audio_bytes = requests.get(audio_url, timeout=30).content
+        out_path = Path("botnoi_voice.mp3")
+        out_path.write_bytes(audio_bytes)
+        st.success(f"✅ บันทึกเสียงเรียบร้อย → {out_path.resolve()}")
+        st.audio(audio_bytes, format="audio/mp3")
+    else:
             st.error("ไม่พบลิงก์ไฟล์เสียงใน response")
 
-    except Exception as e:
+  except Exception as e:
         st.error(f"เกิดข้อผิดพลาด: {e}")
+
 
 
 

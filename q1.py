@@ -42,7 +42,7 @@ if st.button('คำนวน') and cm > 10 and kg >10 :
     word = "โรคอ้วนอันตราย"
   
   payload = {
-        "text": text_input,
+        "text": word,
         "speaker": speaker_id,
         "volume": 1,
         "speed": 1,
@@ -82,6 +82,7 @@ if st.button('คำนวน') and cm > 10 and kg >10 :
 
   except Exception as e:
         st.error(f"เกิดข้อผิดพลาด: {e}")
+
 
 
 

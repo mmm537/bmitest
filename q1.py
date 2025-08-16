@@ -44,11 +44,5 @@ if st.button('คำนวน') and cm > 10 and kg >10 :
   mp3_fp.seek(0)
   st.audio(mp3_fp, format="audio/mp3")
 
-col1,col2 = st.columns(2)
-with col1:
- if st.button('song'):
-  st.video('https://youtu.be/YPy1XSVcPtU?si=hdMut_ZwTMrRsntD')
 
-with col2 :
-  if st.button('video'):
-    st.video('https://youtu.be/E_JjsVKWzm8?si=zUo9Foz9XfWnFCcn'
+

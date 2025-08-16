@@ -8,6 +8,7 @@ st.snow()
 
 kg=st.number_input('น้ำหนัก (kg):')
 cm=st.number_input('ส่วนสูง (cm):')
+
 import io
 if st.button('คำนวน'):
   bmi = kg/((cm/100)**2)
@@ -37,8 +38,29 @@ if st.button('คำนวน'):
     st.image('b5.png')
     word = "โรคอ้วนอันตราย"
 
-  tts =text=word, lang='th'
+payload = {
+        "text": text_input,
+        "speaker": speaker_id,
+        "volume": 1,
+        "speed": 1,
+        "type_media": "mp3",
+        "save_file": "true",
+        "language": "th",
+        "page": "user"
+    }
+
+
+  tts = text=word, lang='th'
   mp3_fp = io.BytesIO()
   tts.write_to_fp(mp3_fp)
   mp3_fp.seek(0)
   st.audio(mp3_fp, format="audio/mp3")
+
+col1,col2 = st.columns(2)
+with col1:
+ if st.button('song'):
+  st.video('https://youtu.be/YPy1XSVcPtU?si=hdMut_ZwTMrRsntD')
+
+with col2 :
+  if st.button('video'):
+    st.video('https://youtu.be/E_JjsVKWzm8?si=zUo9Foz9XfWnFCcn')

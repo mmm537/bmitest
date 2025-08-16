@@ -38,7 +38,8 @@ if st.button('คำนวน'):
     st.image('b5.png')
     word = "โรคอ้วนอันตราย"
 
-payload = {
+if generate_btn:
+    payload = {
         "text": text_input,
         "speaker": speaker_id,
         "volume": 1,
@@ -49,6 +50,11 @@ payload = {
         "page": "user"
     }
 
+    headers = {
+        "accept": "application/json",
+        "Content-Type": "application/json",
+        "botnoi-token": API_TOKEN
+    }
 
   tts = text=word
   mp3_fp = io.BytesIO()
@@ -64,4 +70,5 @@ with col1:
 with col2 :
   if st.button('video'):
     st.video('https://youtu.be/E_JjsVKWzm8?si=zUo9Foz9XfWnFCcn')
+
 

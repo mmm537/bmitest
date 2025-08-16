@@ -43,7 +43,7 @@ if st.button('คำนวน') and cm > 10 and kg >10 :
   
   payload = {
         "text": word,
-        "speaker": speaker_id,
+        "speaker": "1",
         "volume": 1,
         "speed": 1,
         "type_media": "mp3",
@@ -82,6 +82,7 @@ if st.button('คำนวน') and cm > 10 and kg >10 :
 
   except Exception as e:
         st.error(f"เกิดข้อผิดพลาด: {e}")
+
 
 
 

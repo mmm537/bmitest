@@ -10,7 +10,7 @@ kg=st.number_input('น้ำหนัก (kg):')
 cm=st.number_input('ส่วนสูง (cm):')
 
 import io
-if st.button('คำนวน'):
+if st.button('คำนวน') and cm > 10 and kg >10 :
   bmi = kg/((cm/100)**2)
   tt = f'ค่า BMI ของคุณคือ {bmi:.2f}'
   if bmi < 18.5:
@@ -38,25 +38,7 @@ if st.button('คำนวน'):
     st.image('b5.png')
     word = "โรคอ้วนอันตราย"
 
-if generate_btn:
-    payload = {
-        "text": text_input,
-        "speaker": speaker_id,
-        "volume": 1,
-        "speed": 1,
-        "type_media": "mp3",
-        "save_file": "true",
-        "language": "th",
-        "page": "user"
-    }
-
-    headers = {
-        "accept": "application/json",
-        "Content-Type": "application/json",
-        "botnoi-token": API_TOKEN
-    }
-
-  tts = text=word
+  tts = gTTS(text=word, lang='th')
   mp3_fp = io.BytesIO()
   tts.write_to_fp(mp3_fp)
   mp3_fp.seek(0)
@@ -69,6 +51,4 @@ with col1:
 
 with col2 :
   if st.button('video'):
-    st.video('https://youtu.be/E_JjsVKWzm8?si=zUo9Foz9XfWnFCcn')
-
-
+    st.video('https://youtu.be/E_JjsVKWzm8?si=zUo9Foz9XfWnFCcn'

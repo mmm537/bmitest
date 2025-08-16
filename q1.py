@@ -8,7 +8,6 @@ st.snow()
 
 kg=st.number_input('น้ำหนัก (kg):')
 cm=st.number_input('ส่วนสูง (cm):')
-from gtts import gTTS
 import io
 if st.button('คำนวน'):
   bmi = kg/((cm/100)**2)
@@ -43,3 +42,4 @@ if st.button('คำนวน'):
   tts.write_to_fp(mp3_fp)
   mp3_fp.seek(0)
   st.audio(mp3_fp, format="audio/mp3")
+

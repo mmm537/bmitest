@@ -50,7 +50,7 @@ payload = {
     }
 
 
-  tts = text=word, lang='th'
+  tts = text=word
   mp3_fp = io.BytesIO()
   tts.write_to_fp(mp3_fp)
   mp3_fp.seek(0)
@@ -64,3 +64,4 @@ with col1:
 with col2 :
   if st.button('video'):
     st.video('https://youtu.be/E_JjsVKWzm8?si=zUo9Foz9XfWnFCcn')
+

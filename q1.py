@@ -36,10 +36,3 @@ if st.button('คำนวน'):
     st.warning(tt)
     st.image('b5.png')
     word = "โรคอ้วนอันตราย"
-
-  mp3_fp = io.BytesIO()
-  tts.write_to_fp(mp3_fp)
-  mp3_fp.seek(0)
-  st.audio(mp3_fp, format="audio/mp3")
-
-

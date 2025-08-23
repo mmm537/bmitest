@@ -1,3 +1,19 @@
+def askAI(question):
+    from openai import OpenAI
+
+    client = OpenAI(api_key="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")
+
+    response = client.chat.completions.create(
+        model="gpt-4o-mini",
+        messages=[
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": question}
+        ],
+        max_tokens=200
+    )
+
+    return response.choices[0].message.content
+
 import streamlit as st
 
 import requests
@@ -41,52 +57,11 @@ if st.button('คำนวน') and cm > 10 and kg >10 :
     st.image('b5.png')
     word = "โรคอ้วนอันตราย"
   
-  payload = {
-        "text": word,
-        "speaker": "1",
-        "volume": 1,
-        "speed": 1,
-        "type_media": "mp3",
-        "save_file": "true",
-        "language": "th",
-        "page": "user"
-    }
+
+
+ 
+  q=st.empty()
+  q.write("กรุณารอสักครู่")
+  question = f"โรคที่มีความเสี่ยงสูงที่สุด ถ้าค่าbmi={bmi}"
+  q.write(askAI(question))
     
-  headers = {
-        "accept": "application/json",
-        "Content-Type": "application/json",
-        "botnoi-token": API_TOKEN
-    }
-
-  try:
-    res = requests.post(API_URL, json=payload, headers=headers, timeout=30)
-    res.raise_for_status()
-    data = res.json()
-    st.write("API Response:", data)
-
-    # ดึง URL ไฟล์เสียง
-    audio_url = (
-        data.get("url")
-        or data.get("audio_url")
-        or (data.get("data") or {}).get("url")
-        )
-
-    if audio_url:
-        audio_bytes = requests.get(audio_url, timeout=30).content
-        out_path = Path("botnoi_voice.mp3")
-        out_path.write_bytes(audio_bytes)
-        st.success(f"✅ บันทึกเสียงเรียบร้อย → {out_path.resolve()}")
-        st.audio(audio_bytes, format="audio/mp3")
-    else:
-            st.error("ไม่พบลิงก์ไฟล์เสียงใน response")
-
-  except Exception as e:
-        st.error(f"เกิดข้อผิดพลาด: {e}")
-
-
-
-
-
-
-
-

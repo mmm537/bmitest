@@ -1,6 +1,5 @@
+from openai import OpenAI
 def askAI(question):
-    from openai import OpenAI
-
     client = OpenAI(api_key="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")
 
     response = client.chat.completions.create(
@@ -65,3 +64,4 @@ if st.button('คำนวน') and cm > 10 and kg >10 :
   question = f"โรคที่มีความเสี่ยงสูงที่สุด ถ้าค่าbmi={bmi}"
   q.write(askAI(question))
     
+
